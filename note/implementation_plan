@@ -1,0 +1,39 @@
+JMX
+metrics
+ehcach3 (在优化performance得时候做)
+
+docker
+jmxtrans
+influxDB
+
+perf4j
+jmxremote
+
+
+kibana
+elasticsearch
+logstash / beats
+metrics : https://www.elastic.co/cn/solutions/metrics
+alerting
+monitoring(属于elastic公司得)
+graph
+
+专业monitoring 工具
+Nagios
+Raygun
+
+
+amazon 系列
+
+Graphite
+Jenkins
+
+
+Auto deploy:
+Kubernetes
+Puppet Enterprise
+Ansible
+
+
+NOT FREE!!!
+Bamboo

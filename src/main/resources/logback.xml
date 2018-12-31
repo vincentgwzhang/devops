@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--
+        这是屏蔽Logback自己本身的log
+    -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{100} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!--<appender name="perf4jJmxAppenderAdmin" class="tina.coffee.system.monitoring.perf4j.CoffeePerf4jJmxAttributeStatisticsAppender">-->
+        <!--<ClassName>tina.coffee.webmvc.admin.AdminController</ClassName>-->
+        <!--<MBeanName>coffee:type=Perf4J,name=AdminController</MBeanName>-->
+    <!--</appender>-->
+
+    <!--<appender name="perf4jJmxAppenderDesktop" class="tina.coffee.system.monitoring.perf4j.CoffeePerf4jJmxAttributeStatisticsAppender">-->
+        <!--<ClassName>tina.coffee.webmvc.admin.DesktopController</ClassName>-->
+        <!--<MBeanName>coffee:type=Perf4J,name=DesktopController</MBeanName>-->
+    <!--</appender>-->
+
+    <!--<appender name="CoalescingStatistics" class="org.perf4j.logback.AsyncCoalescingStatisticsAppender">-->
+        <!--<param name="TimeSlice" value="60000"/>-->
+        <!--<appender-ref ref="perf4jJmxAppenderAdmin"/>-->
+        <!--<appender-ref ref="perf4jJmxAppenderDesktop"/>-->
+    <!--</appender>-->
+
+    <!--<logger name="org.perf4j" level="info" additivity="false">-->
+        <!--<appender-ref ref="CoalescingStatistics"/>-->
+    <!--</logger>-->
+
+    <logger name="org.springframework" level="error" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!--<logger name="org.jmxtrans" level="error" additivity="false">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <logger name="org.hibernate" level="error" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.zaxxer" level="error" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.dozer" level="error" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.eclipse.jetty" level="error" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

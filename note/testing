@@ -1,0 +1,9 @@
+localhost:9082/devops/student
+localhost:9082/devops/student/id/2
+localhost:9082/devops/student/name/name1
+
+{
+	"id":2,
+    "name": "name2",
+    "address": "this is address 2"
+}
