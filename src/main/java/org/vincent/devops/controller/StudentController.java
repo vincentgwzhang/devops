@@ -1,5 +1,6 @@
 package org.vincent.devops.controller;
 
+import org.perf4j.aop.Profiled;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
@@ -38,27 +39,32 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getAllStudents(), OK);
     }
 
+    @Profiled
     @GetMapping("/id/{id}")
     public ResponseEntity<StudentDTO> getStudentById(@PathVariable int id) {
         return new ResponseEntity<>(studentService.getStudent(id), OK);
     }
 
+    @Profiled
     @GetMapping("/name/{name}")
     public ResponseEntity<StudentDTO> getStudentByName(@PathVariable String name) {
         return new ResponseEntity<>(studentService.getStudent(name), OK);
     }
 
+    @Profiled
     @PostMapping
     public ResponseEntity<StudentDTO> insertNewStudent(@RequestBody @NotNull StudentDTO studentDTO) {
         return new ResponseEntity<>(studentService.insertStudent(studentDTO), CREATED);
     }
 
+    @Profiled
     @PutMapping
     public ResponseEntity<StudentDTO> updateStudent(@RequestBody @NotNull StudentDTO studentDTO) {
         studentService.updateStudent(studentDTO);
         return new ResponseEntity<>(NO_CONTENT);
     }
 
+    @Profiled
     @DeleteMapping("/id/{id}")
     public ResponseEntity<StudentDTO> deleteStudent(@PathVariable int id) {
         studentService.deleteStudent(id);

@@ -17,7 +17,7 @@
         <dozer.version>5.5.1</dozer.version>
 
         <!--
-        Performance, two component, metric and perf4j, they are two different system, no relationship
+        Performance, two component, metric and spf4j, they are two different system, no relationship
         -->
         <metrics.version>4.0.5</metrics.version>
         <perf4j.version>0.9.16</perf4j.version>
@@ -108,6 +108,12 @@
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-jetty9</artifactId>
             <version>${metrics.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.perf4j</groupId>
+            <artifactId>perf4j</artifactId>
+            <version>${perf4j.version}</version>
         </dependency>
 
         <!--DB utils-->

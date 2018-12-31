@@ -1,15 +1,14 @@
 JMX
-metrics
+
 ehcach3 (在优化performance得时候做)
 
 docker
 jmxtrans
 influxDB
 
-perf4j
 jmxremote
 
-
+metrics
 kibana
 elasticsearch
 logstash / beats

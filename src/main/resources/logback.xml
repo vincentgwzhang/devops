@@ -11,25 +11,19 @@
         </layout>
     </appender>
 
-    <!--<appender name="perf4jJmxAppenderAdmin" class="tina.coffee.system.monitoring.perf4j.CoffeePerf4jJmxAttributeStatisticsAppender">-->
-        <!--<ClassName>tina.coffee.webmvc.admin.AdminController</ClassName>-->
-        <!--<MBeanName>coffee:type=Perf4J,name=AdminController</MBeanName>-->
-    <!--</appender>-->
+    <appender name="perf4jJmxAppenderStudentController" class="org.vincent.devops.monitoring.perf4j.Perf4jJmxAttributeStatisticsAppender">
+        <ClassName>org.vincent.devops.controller.StudentController</ClassName>
+        <MBeanName>devops1:type=Perf4J1,name=StudentController</MBeanName>
+    </appender>
 
-    <!--<appender name="perf4jJmxAppenderDesktop" class="tina.coffee.system.monitoring.perf4j.CoffeePerf4jJmxAttributeStatisticsAppender">-->
-        <!--<ClassName>tina.coffee.webmvc.admin.DesktopController</ClassName>-->
-        <!--<MBeanName>coffee:type=Perf4J,name=DesktopController</MBeanName>-->
-    <!--</appender>-->
+    <appender name="CoalescingStatistics" class="org.perf4j.logback.AsyncCoalescingStatisticsAppender">
+        <param name="TimeSlice" value="1000"/>
+        <appender-ref ref="perf4jJmxAppenderStudentController"/>
+    </appender>
 
-    <!--<appender name="CoalescingStatistics" class="org.perf4j.logback.AsyncCoalescingStatisticsAppender">-->
-        <!--<param name="TimeSlice" value="60000"/>-->
-        <!--<appender-ref ref="perf4jJmxAppenderAdmin"/>-->
-        <!--<appender-ref ref="perf4jJmxAppenderDesktop"/>-->
-    <!--</appender>-->
-
-    <!--<logger name="org.perf4j" level="info" additivity="false">-->
-        <!--<appender-ref ref="CoalescingStatistics"/>-->
-    <!--</logger>-->
+    <logger name="org.perf4j" level="info" additivity="false">
+        <appender-ref ref="CoalescingStatistics"/>
+    </logger>
 
     <logger name="org.springframework" level="error" additivity="false">
         <appender-ref ref="STDOUT"/>
