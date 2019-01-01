@@ -34,7 +34,7 @@ public class StudentExceptionHandler {
     }
 
     @ExceptionHandler(StudentDuplicateException.class)
-    @ResponseStatus(value= HttpStatus.NOT_FOUND)
+    @ResponseStatus(value= HttpStatus.CONFLICT)
     public ErrorDTO handlerStudentDuplicateException(StudentDuplicateException ex) {
         return buildErrorDTO(ex);
     }
