@@ -1,0 +1,18 @@
+A: 关于建立原始的JMX给 Jconsole 访问
+
+相比以前，这次得JMX 已经优化了，再也没有所谓得 java -Dkey=value ，而是编程建立 JMX server(org.vincent.devops.system.config.JMXConfig)
+在这个类里面，逻辑就是：
+
+1, 如果什么相关得属性都没有写，那么默认就是
+service:jmx:rmi://localhost:1099/jndi/rmi://localhost:1099/jmxrmi
+并且能够匿名访问。
+
+2, 如果建立了 jmx.rmi.password=jmxremote.password 等，就建立相关得 acc / password 和对应得 role.
+
+========================================================================================================
+
+
+B: 关于建立 JMXTrans 等
+
+
+
