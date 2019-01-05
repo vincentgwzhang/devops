@@ -9,7 +9,9 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.jmx.support.ConnectorServerFactoryBean;
 import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
 
-import java.net.URL;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -57,16 +59,31 @@ public class JMXConfig {
         return connectorServerFactoryBean;
     }
 
-    private Properties initialJMXServerProperties() throws RuntimeException {
-        URL passwordURL = JMXConfig.class.getClassLoader().getResource(passwordFileName);
-        URL accessURL   = JMXConfig.class.getClassLoader().getResource(accessFileName);
-
-        String passFile     = Optional.ofNullable(passwordURL).map(URL::getPath).orElseThrow(() -> new RuntimeException("JMX password file not exist"));
-        String accessFile   = Optional.ofNullable(accessURL).map(URL::getPath).orElseThrow(() -> new RuntimeException("JMX access file not exist"));
-
+    private Properties initialJMXServerProperties() throws Exception {
         Properties properties = new Properties();
-        properties.setProperty(PASSWORD_FILE_PROP, passFile);
-        properties.setProperty(ACCESS_FILE_PROP, accessFile);
+
+        final File passwordFile = File.createTempFile(passwordFileName, "temp");
+        final File accessFile = File.createTempFile(accessFileName, "temp");
+
+        InputStream pfInputStream = JMXConfig.class.getClassLoader().getResourceAsStream(passwordFileName);
+        InputStream afInputStream = JMXConfig.class.getClassLoader().getResourceAsStream(accessFileName);
+
+        try (
+                FileOutputStream foPasswordFile = new FileOutputStream(passwordFile);
+                FileOutputStream foAccessFile = new FileOutputStream(accessFile)
+        ) {
+            Optional.ofNullable(pfInputStream).orElseThrow(() -> new RuntimeException("JMX password file not found"));
+            Optional.ofNullable(afInputStream).orElseThrow(() -> new RuntimeException("JMX access file not found"));
+            pfInputStream.transferTo(foPasswordFile);
+            afInputStream.transferTo(foAccessFile);
+            properties.setProperty(PASSWORD_FILE_PROP, passwordFile.getAbsolutePath());
+            properties.setProperty(ACCESS_FILE_PROP, accessFile.getAbsolutePath());
+            passwordFile.deleteOnExit();
+            accessFile.deleteOnExit();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+
         return properties;
     }
 

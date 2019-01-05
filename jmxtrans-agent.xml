@@ -1,0 +1,33 @@
+<jmxtrans-agent>
+
+    <queries>
+
+        <query objectName="java.lang:type=Memory" attribute="HeapMemoryUsage" key="used" resultAlias="memory.HeapMemoryUsage.used"/>
+        <query objectName="java.lang:type=Memory" attribute="HeapMemoryUsage" key="committed" resultAlias="memory.HeapMemoryUsage.committed"/>
+        <query objectName="java.lang:type=Memory" attribute="NonHeapMemoryUsage" key="used" resultAlias="memory.NonHeapMemoryUsage.used"/>
+        <query objectName="java.lang:type=Memory" attribute="NonHeapMemoryUsage" key="committed" resultAlias="memory.NonHeapMemoryUsage.committed"/>
+        <query objectName="java.lang:type=MemoryPool,name=*" attribute="Usage" key="used" resultAlias="memory.%name%.used"/>
+        <query objectName="java.lang:type=MemoryPool,name=*" attribute="Usage" key="committed" resultAlias="memory.%name%.committed"/>
+
+        <query objectName="java.lang:type=GarbageCollector,name=*" attribute="CollectionCount" resultAlias="gc.%name%.CollectionCount"/>
+        <query objectName="java.lang:type=GarbageCollector,name=*" attribute="CollectionTime" resultAlias="gc.%name%.CollectionTime"/>
+
+        <query objectName="java.lang:type=Threading" attribute="DaemonThreadCount" resultAlias="threads.DaemonThreadCount"/>
+        <query objectName="java.lang:type=Threading" attribute="PeakThreadCount" resultAlias="threads.PeakThreadCount"/>
+        <query objectName="java.lang:type=Threading" attribute="ThreadCount" resultAlias="threads.ThreadCount"/>
+        <query objectName="java.lang:type=Threading" attribute="TotalStartedThreadCount" resultAlias="threads.TotalStartedThreadCount"/>
+
+        <query objectName="java.lang:type=OperatingSystem" attribute="ProcessCpuTime" resultAlias="cpu.ProcessCpuTime"/>
+        <query objectName="java.lang:type=OperatingSystem" attribute="ProcessCpuLoad" resultAlias="cpu.ProcessCpuLoad"/>
+
+        <!--<query objectName="coffee:type=customMetrics" resultAlias="#attribute#"/>-->
+    </queries>
+
+    <!--<outputWriter class="org.jmxtrans.agent.ConsoleOutputWriter"/>-->
+
+    <outputWriter class="org.jmxtrans.agent.ConsoleOutputWriter">
+    </outputWriter>
+
+    <!-- granularity on graphite is 30s, so any data send more often will be discarded anyway -->
+    <collectIntervalInSeconds>1</collectIntervalInSeconds>
+</jmxtrans-agent>

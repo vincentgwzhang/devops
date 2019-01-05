@@ -1,3 +1,5 @@
+java -javaagent:jmxtrans-agent-1.2.8.jar=jmxtrans-agent.xml -jar target/devops-1.0-Final.jar
+
 JMX
 
 ehcach3 (在优化performance得时候做)

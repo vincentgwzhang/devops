@@ -1,0 +1,11 @@
+New features for JDK 11:
+
+1, Local variable type inference (var keyword).
+2, New native unmodifiable collections APIs.
+3, New reactive streams APIs.
+4, Improved streams/predicate/optional APIs.
+5, Improved system process API.
+6, Improved files API.
+7, Support for HTTP/2.
+8, Standard Java Async HTTP client.
+9, Multi-release JARs.

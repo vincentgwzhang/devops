@@ -4,7 +4,7 @@ A: 关于建立原始的JMX给 Jconsole 访问
 在这个类里面，逻辑就是：
 
 1, 如果什么相关得属性都没有写，那么默认就是
-service:jmx:rmi://localhost:1099/jndi/rmi://localhost:1099/jmxrmi
+service:jmx:rmi://localhost:10201/jndi/rmi://localhost:10201/jmxrmi
 并且能够匿名访问。
 
 2, 如果建立了 jmx.rmi.password=jmxremote.password 等，就建立相关得 acc / password 和对应得 role.
@@ -14,5 +14,15 @@ service:jmx:rmi://localhost:1099/jndi/rmi://localhost:1099/jmxrmi
 
 B: 关于建立 JMXTrans 等
 
+JMXTrans 就是运送 JMX 得相关数据到时序数据库， 时序数据库有 Graphite / InfluxDB / Prometheus
+
+时序数据库和排名为：
+https://db-engines.com/en/ranking/time+series+dbms
+
+明显， influxDB 比较流行
+
+下面统一是 InfluxDB 公司得产品
+采集数据（telegraf）-> 存储数据（InfluxDB) -> 显示数据（Grafana）
 
 
+https://portal.influxdata.com/downloads
